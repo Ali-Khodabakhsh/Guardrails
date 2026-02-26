@@ -1,22 +1,22 @@
 models:
   - type: main
-    engine: openai
-    model: gpt-3.5-turbo-instruct
+    engine: google_genai
+    model: gemini-2.0-flash-lite
 
 rails:
   config:
     polygraf:
-      server_endpoint: "http://localhost:8000/v1/pii/text-detect"
+      server_endpoint: "https://governance.api.polygraf.ai/gcp/pii/text-detect"
       input:
         entities:
-          - EMAIL_ADDRESS
-          - NAME
-          - PHONE_NUMBER
+          - Email
+          - Person
+          - Phone
       output:
         entities:
-          - EMAIL_ADDRESS
-          - NAME
-          - PHONE_NUMBER
+          - Email
+          - Person
+          - Phone
 
   input:
     flows:

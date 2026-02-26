@@ -39,11 +39,16 @@ async def polygraf_request(
     Raises:
         ValueError: If the API call fails or the response cannot be parsed as JSON.
     """
-    payload = {"text": text}
+    payload = {
+        "text": text,
+        "detect_pid": True,
+        "pid_granularity": 3,
+        "aggregate_entities": True,
+    }
     headers: Dict[str, str] = {"Content-Type": "application/json"}
 
     if api_key:
-        headers["API_Key"] = f"Bearer {api_key}"
+        headers["Authorization"] = f"Bearer {api_key}"
 
     async with aiohttp.ClientSession() as session:
         async with session.post(
